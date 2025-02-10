@@ -1,5 +1,5 @@
 const http = require("http");
-const app = require("../api/app");
+const app = require("./app");
 const connectDB = require("./connection"); // Import the database connection function
 
 const PORT = process.env.PORT || 3000;

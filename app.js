@@ -1,7 +1,7 @@
 const express = require('express');
-const userRoute=require('../api/routes/user');
-const videoRoute=require('../api/routes/video');
-const commentRoute =require('../api/routes/comment');
+const userRoute=require('./routes/user');
+const videoRoute=require('./routes/video');
+const commentRoute =require('./routes/comment');
 const bodyParser=require('body-parser');
 const fileUpload=require('express-fileupload');
 const app = express();
