@@ -17,6 +17,16 @@ cloudinary.config({
 Router.post('/signup', async (req, res) => {
     try {
 
+        // Check if the required fields are provided
+        const { channelName, email, phone, password } = req.body;
+
+        if (!channelName || !email || !phone || !password) {
+            return res.status(400).json({
+                error: 'All fields (channelName, email, phone, password) are required.'
+            });
+        }
+
+
         const users = await User.find({ email: req.body.email })
 
         if (users.length > 0) {
@@ -37,6 +47,7 @@ Router.post('/signup', async (req, res) => {
         })
 
         const user = await newUser.save()
+
         res.status(200).json({
             newUser: user
         })
@@ -52,8 +63,13 @@ Router.post('/signup', async (req, res) => {
 
 
 Router.post('/login', async (req, res) => {
-    console.log(req.body)
-
+    const { email, password } = req.body;
+    //check for required email and password
+    if (!email || !password) {
+        return res.status(400).json({
+            error: "email and password is required"
+        });
+    }
     try {
         //check email is present or not
         const users = await User.find({ email: req.body.email })
