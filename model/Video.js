@@ -12,8 +12,9 @@ const videoSchema = new Schema({
         required: 'true'
     },
     user_id: {
-        type: String,
-        required: 'true'
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     },
     videoUrl: {
         type: String,
@@ -23,9 +24,9 @@ const videoSchema = new Schema({
         type: String,
         required: 'true'
     },
-    thumbnailUrl:{
-        type:String,
-        required:'true'
+    thumbnailUrl: {
+        type: String,
+        required: 'true'
     },
     thumbnailId: {
         type: String,
@@ -50,11 +51,11 @@ const videoSchema = new Schema({
         type: Number,
         default: 0
     },
-    likedBy:[{
+    likedBy: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    dislikedBy:[{
+    dislikedBy: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],

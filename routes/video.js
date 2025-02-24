@@ -53,6 +53,27 @@ Router.post('/upload', checkAuth, async (req, res) => {
     }
 })
 
+//get own videos
+Router.get('/own-video',checkAuth,async(req,res)=>{
+    try{
+        const token = req.headers.authorization.split(" ")[1]
+        const user = await jwt.verify(token, 'created by admin',)
+        console.log(user)
+        const videos= await Video.find({user_id:user._id})
+        console.log(videos)
+        res.status(200).json({
+            videos:videos
+          
+        })
+    }
+    catch(err)
+    {
+        console.log(err)
+        res.status(500).json({
+            error: err
+        })
+    }
+})
 
 //update video detail
 
